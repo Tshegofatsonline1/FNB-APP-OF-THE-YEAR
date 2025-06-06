@@ -19,15 +19,15 @@
             <td>x</td>
         </tr>
         <tr>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
+            <td onclick="digitBtnPressed(4)">4</td>
+            <td onclick="digitBtnPressed(5)">5</td>
+            <td onclick="digitBtnPressed(6)">6</td>
             <td>-</td>
         </tr>
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
+            <td onclick="digitBtnPressed(1)">1</td>
+            <td onclick="digitBtnPressed(2)">2</td>
+            <td onclick="digitBtnPressed(3)">3</td>
             <td>+</td>
         </tr>
         <tr>
@@ -41,10 +41,20 @@
         
     </table>
     <script>
-        function digitBtnPressed(button) {
+         var newLine = true;
 
+        function digitBtnPressed(button) {
+            if(newLine == true) {
+                document.getElementById("inputBox").value = button;
+                newLine = false;
+            } else {
+            
             var currentValue = document.getElementById("inputBox").value;
             document.getElementById("inputBox").value = currentValue + button;
+
+            }
+
+           
         }
 
     </script>
