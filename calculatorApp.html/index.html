@@ -31,8 +31,8 @@
             <td>+</td>
         </tr>
         <tr>
-            <td colspan="2">0</td>
-            <td>AC</td>
+            <td colspan="2" onclick="digitBtnPressed(0)">0</td>
+            <td onclick="btnACPressed()">AC</td>
             <td>/</td>
         </tr>
         <tr>
@@ -41,8 +41,9 @@
         
     </table>
     <script>
-         var newLine = true;
+         var newLine = true;//Nollean variable. Dtermine if the next thing the user types should be on a newline
 
+         //Event handler for when any digit button is pressed
         function digitBtnPressed(button) {
             if(newLine == true) {
                 document.getElementById("inputBox").value = button;
@@ -52,9 +53,13 @@
             var currentValue = document.getElementById("inputBox").value;
             document.getElementById("inputBox").value = currentValue + button;
 
-            }
+            } 
+        }
 
-           
+        //Event handler for when the AC button is pressed
+        function btnACPressed() {
+            document.getElementById("inputBox").value = 0;
+            newLine = true;
         }
 
     </script>
