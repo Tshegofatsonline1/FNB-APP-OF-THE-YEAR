@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br/>
+    <form id="editForm">
+        <label for="firstname">First Name</label><br>
+        <input type="text" name="firstname" id="firstname"><br>
+        <label for="Lastname">Last Name</label><br>
+        <input type="text" name="lastname" id="lastname"><br>
+        <label for="Lastname">Mobile</label><br>
+        <input type="text" name="mobile" id="mobile"><br>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" id="email"><br>
+         <label for="avatar">Select a file</label><br>
+        <input type="file" name="avatar" id="avatar"><br>
+        <button type="submit" id="submitform">Submit</button>
+    </form>
+    <br>
+    <button id="homeLink" type="button">Home</button>
+    <script src="config.js"></script>
+    <script>
+        function submitForm(e) {
+            e.preventDefault();
+
+            const form = new FormData(document.querySelector('#editForm'));
+            form.append('apiKey', apiKey);
+        }
+    </script>
+</body>
+</html>
