@@ -17,7 +17,7 @@
              <label for="avatar" id="avatarLabel" hidden>Change Profile Image</label>
             <input type="file" name="avatar" id="avatar" hidden><br>
             <br/>
-            <button type="submit" id="submitForm" hidden></button>
+            <button type="submit" id="submitForm" hidden>Submit</button>
         </form>
         
             <button id="homeLink" type="button">Home</button>
@@ -29,6 +29,9 @@
                 var id = getId();
 
                 document.getElementById("homeLink").addEventListener('click', homeLink);
+                document.getElementById("editContact").addEventListener('click', editContact);
+                document.getElementById("submitForm").addEventListener('click', submitForm);
+               
 
                 console.log("The id is:" + id) ;
 
@@ -67,6 +70,43 @@
                     document.getElementById("email").value = data[0].email;
                 }
 
+                function editContact() {
+                    document.getElementById("firstname").readOnly = false;
+                    document.getElementById("lastname").readOnly = false;
+                    document.getElementById("mobile").readOnly = false;
+                    document.getElementById("email").readOnly = false;
+                    document.getElementById("avatar").hidden = false;
+                     document.getElementById("submitForm").hidden = false;
+                }
+
+                function submitForm(e){
+                    e.preventDefault();
+
+                    const form = new FormData(document.querySelector("#editForm"));
+                    form.append('apiKey', apiKey);
+                    form.append('id', id);
+
+                    fetch(rootPath + 'controller/edit-contact/', {
+                    method: 'POST',
+                    headers: {'Accept': 'application/json, *.*'},
+                    body: form
+                    })
+                     .then(function(response) {
+                    return response.text();
+                })
+            
+                .then(function(data){
+                if(data == "1"){
+                    alert("Contact edited.")
+                    homeLink();
+                    //Link to home page
+                }else{
+                    alert(data);
+                    homeLink();
+                    //Link to home page
+                }
+            })
+        }
 
             </script>
     </body>
